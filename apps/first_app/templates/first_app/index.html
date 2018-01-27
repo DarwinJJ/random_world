@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'first_app/css/style.css' %}">
+    <title>randomworld</title>
+</head>
+<body>
+    <div id="wrapper">
+        
+        <h1>Random Word</h1>
+        <h3>(attempt # {{ request.session.counter }})</h3>
+        <div id="randomwordholder">
+        </div>
+        
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                {{ random_word }}
+            </div>
+        </div>
+        <form action='/randomword' method='post'>
+            {% csrf_token %}
+            <input type="submit" name="submit" value="generate">
+        </form>
+        <form action='/reset' method='post'>
+            {% csrf_token %}
+            <input type="submit" name="submit" value="reset">
+        
+        </form>
+    </div>
+    
+</body>
+</html>
